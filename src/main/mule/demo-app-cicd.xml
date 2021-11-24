@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="demo-app-cicdFlow" doc:id="64078f6d-b33c-48be-a2b9-37cf6a4cc9c7" >
+		<http:listener doc:name="HTTP: GET/test" doc:id="69773465-fdef-4b1a-83d8-4ebf35a59c5c" allowedMethods="GET" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value='#["Message from Mule Application"]' doc:name="Set Payload" doc:id="74b27551-b01f-4818-b653-70add1268fb3" />
+		<ee:transform doc:name="Transform Message" doc:id="ff7bf429-717d-4756-b89f-947412a6b2fa" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="12382dd0-e739-420b-9803-6aabc0f26fd7" message="#[payload]"/>
+	</flow>
+</mule>
