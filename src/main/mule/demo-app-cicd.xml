@@ -7,7 +7,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<flow name="demo-app-cicdFlow" doc:id="64078f6d-b33c-48be-a2b9-37cf6a4cc9c7" >
 		<http:listener doc:name="HTTP: GET/test" doc:id="69773465-fdef-4b1a-83d8-4ebf35a59c5c" allowedMethods="GET" config-ref="HTTP_Listener_config" path="/test"/>
-		<set-payload value='#["Message from Mule Application"]' doc:name="Set Payload" doc:id="74b27551-b01f-4818-b653-70add1268fb3" />
+		<set-payload value='#["Message from Mule Application v1"]' doc:name="Set Payload" doc:id="74b27551-b01f-4818-b653-70add1268fb3" />
 		<ee:transform doc:name="Transform Message" doc:id="ff7bf429-717d-4756-b89f-947412a6b2fa" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
