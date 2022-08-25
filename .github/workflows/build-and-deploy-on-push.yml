@@ -75,10 +75,10 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
         ANYPOINT_REGION1: ${{ secrets.ANYPOINT_REGION1 }}
       run: |
-        artifactName=$(ls *.jar | head -1)
+        artifactName=$(ls *.jar | head -1) + $ANYPOINT_REGION1
         mvn deploy -DmuleDeploy \
-         -Dmule.artifact=${{ format('{0}-{1}', (ls *.jar | head -1), ANYPOINT_REGION1) }} \
-         -Danypoint.applicationName=${{ format('{0}-{1}', (ls *.jar | head -1), ANYPOINT_REGION1) }} \
+         -Dmule.artifact=$artifactName \
+         -Danypoint.applicationName=$artifactName \
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
          -Danypoint.region="$ANYPOINT_REGION1" \
