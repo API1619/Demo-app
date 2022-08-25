@@ -78,7 +78,7 @@ jobs:
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -Danypoint.applicationName=$artifactName \
+         -Danypoint.applicationName=demo-app-cicd-region1 \
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
          -Danypoint.region="$ANYPOINT_REGION1" \
