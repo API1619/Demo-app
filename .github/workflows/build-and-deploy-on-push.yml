@@ -69,7 +69,7 @@ jobs:
       with:
         name: artifacts
     
-    - name: Deploy to Sandbox
+    - name: Deploy to Region1
       env:
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
@@ -82,4 +82,19 @@ jobs:
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
          -Danypoint.region="$ANYPOINT_REGION1" \
+         -DskipTests
+
+    - name: Deploy to Region2
+      env:
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        ANYPOINT_REGION2: ${{ secrets.ANYPOINT_REGION2 }}
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn deploy -DmuleDeploy \
+         -Dmule.artifact=$artifactName \
+         -Danypoint.applicationName=demo-app-cicd-region2 \
+         -Danypoint.username="$USERNAME" \
+         -Danypoint.password="$PASSWORD" \
+         -Danypoint.region="$ANYPOINT_REGION2" \
          -DskipTests
