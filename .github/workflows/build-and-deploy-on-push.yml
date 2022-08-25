@@ -77,8 +77,8 @@ jobs:
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
-         -Dmule.artifact=${{ format('{0}-{1}', artifactName, ANYPOINT_REGION1) }} \
-         -Danypoint.applicationName=${{ format('{0}-{1}', artifactName, ANYPOINT_REGION1) }} \
+         -Dmule.artifact=${{ format('{0}-{1}', (ls *.jar | head -1), ANYPOINT_REGION1) }} \
+         -Danypoint.applicationName=${{ format('{0}-{1}', (ls *.jar | head -1), ANYPOINT_REGION1) }} \
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
          -Danypoint.region="$ANYPOINT_REGION1" \
