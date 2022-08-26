@@ -28,7 +28,17 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    
+
+    - name: Add repo credentials
+      uses: s4u/maven-settings-action@v2.4.0
+      with:
+        servers: |
+          [{
+           "id": "mule-enterprise",
+           "username": "${{ secrets.mule_nexus_username }}",
+           "password": "${{ secrets.mule_nexus_password }}"
+          }]
+      
     - name: Print effective-settings (optional)
       run: mvn help:effective-settings
     
