@@ -28,7 +28,17 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    
+
+    - name: Add repo credentials
+      uses: s4u/maven-settings-action@v2.4.0
+      with:
+        servers: |
+          [{
+           "id": "mule-enterprise",
+           "username": "${{ secrets.mule_nexus_username }}",
+           "password": "${{ secrets.mule_nexus_password }}"
+          }]
+      
     - name: Print effective-settings (optional)
       run: mvn help:effective-settings
     
@@ -69,14 +79,32 @@ jobs:
       with:
         name: artifacts
     
-    - name: Deploy to Sandbox
+    - name: Deploy to Region1
       env:
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
+        ANYPOINT_REGION1: ${{ secrets.ANYPOINT_REGION1 }}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
+         -Danypoint.applicationName=demo-app-cicd-region1 \
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
+         -Danypoint.region="$ANYPOINT_REGION1" \
+         -DskipTests
+
+    - name: Deploy to Region2
+      env:
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        ANYPOINT_REGION2: ${{ secrets.ANYPOINT_REGION2 }}
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn deploy -DmuleDeploy \
+         -Dmule.artifact=$artifactName \
+         -Danypoint.applicationName=demo-app-cicd-region2 \
+         -Danypoint.username="$USERNAME" \
+         -Danypoint.password="$PASSWORD" \
+         -Danypoint.region="$ANYPOINT_REGION2" \
          -DskipTests

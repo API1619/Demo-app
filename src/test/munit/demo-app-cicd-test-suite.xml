@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="demo-app-cicd-test-suite.xml" />
+	<munit:test name="flowTest001" doc:id="fa028586-eb15-4016-a784-c15e8ad08f57" description="Test">
+	</munit:test>
+	<munit:test name="flowTest002" doc:id="b1132949-04d5-40ca-9f03-e620f5a93a87" />
+	<munit:test name="flowTest003" doc:id="c34463c8-4069-44d4-beba-15abdc4a1484" />
+
+
+</mule>
