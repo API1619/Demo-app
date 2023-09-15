@@ -10,8 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+   
     
     steps:
     
@@ -51,8 +50,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  
 
     steps:    
     
